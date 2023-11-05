@@ -1,6 +1,7 @@
 import { Gif, SearchResponse } from './../interfaces/gifs.interfaces';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http'
+import { environment } from 'src/environments/environment';
 
 
 const LS_HISTORY_KEY = 'history';
@@ -11,7 +12,6 @@ export class GifsService {
   public gifList: Gif[] = [];
 
   private _tagsHistory: string[] = [];
-  private apiKey: string = 'nKA1s6vQmrkoIgFkUjkQ999zfbtRo4O9';
   private serviceUrl: string = 'https://api.giphy.com/v1/gifs';
 
   constructor( private http: HttpClient ) {
@@ -55,7 +55,7 @@ export class GifsService {
     this.organizeHistory(tag);
 
     const params = new HttpParams()
-      .set('api_key', this.apiKey)
+      .set('api_key', environment.ZZ_GIPHY_KEY)
       .set('q', tag)
       .set('limit', 10)
 
